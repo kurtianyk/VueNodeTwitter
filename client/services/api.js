@@ -13,7 +13,7 @@ const rp = request.defaults({
   json: true,
 });
 
-const getUserTimeline = handle => rp.get(`/twitter/user_timeline/${handle}`);
+const getUserTimeline = handle => rp.get(`/api/twitter/user_timeline/${handle}`);
 
 export default {
   getUserTimeline,
