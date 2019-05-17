@@ -5,7 +5,7 @@ const Twitter =  new TwitterAPI(consumerKey, consumerSecret);
 
 async function getUserTimeline(req, res, next) {
   try {
-    const { handle, count } = req.param;
+    const { handle } = req.param;
     const timeline = await Twitter.getUserTimeline(handle, count);
     res.status(200).send(timeline);
   } catch (e) {
