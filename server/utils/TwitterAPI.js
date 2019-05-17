@@ -2,6 +2,19 @@ const request = require('request-promise');
 
 class TwitterAPI {
   constructor(consumer_key, consumer_secret) {
+
+    this.rp = request.defaults({
+      baseUrl: 'https://api.twitter.com/1.1',
+      timeout: 10000,
+      headers: {
+        Accept: '*/*',
+        'Cache-Control': 'no-cache',
+        Connection: 'close',
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      json: true,
+    });
+
     (async () => {
       try {
       const token = await request({
@@ -13,22 +26,16 @@ class TwitterAPI {
         },
         form: { grant_type:'client_credentials'},
         json: true
-      })
-
-      this.rp = request.defaults({
-        baseUrl: 'https://api.twitter.com/1.1',
-        timeout: 10000,
-        headers: {
-          Accept: '*/*',
-          Authorization: `Bearer ${token.access_token}`,
-          'Cache-Control': 'no-cache',
-          Connection: 'close',
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        json: true,
       });
+
+      this.rp = this.rp.defaults({
+        headers: {
+        Authorization: `Bearer ${token.access_token}`,
+        },
+      });
+
     } catch (e) {
-      console.log('error', e.message);
+      console.error(e.message);
       throw Error(e.message);
     }
     })();

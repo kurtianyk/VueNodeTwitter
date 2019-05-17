@@ -8,8 +8,9 @@ async function getUserTimeline(req, res, next) {
     const { handle, count } = req.param;
     const timeline = await Twitter.getUserTimeline(handle, count);
     res.status(200).send(timeline);
-  } catch (error) {
-    res.status(400).send(e);
+  } catch (e) {
+    console.error(e);
+    res.status(500).send(e);
   }
 }
 
