@@ -1,5 +1,6 @@
 <template>
   <div class="container">
-      <router-view />
+    <h1>Random App Title</h1>
+    <router-view />
   </div>
 </template>

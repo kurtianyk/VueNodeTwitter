@@ -46,7 +46,7 @@ class TwitterAPI {
       const user_timeline = await this.rp.get({ uri:'/statuses/user_timeline.json', qs: { screen_name: handle, count: count || 5 } });
       return user_timeline;
     } catch(e) {
-      console.log('error', e.message);
+      console.error(e.message);
       throw Error(e.message);
     }
   }
