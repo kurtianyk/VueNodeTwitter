@@ -2,6 +2,7 @@
   <div class="main-page">
     <input v-model="handle" />
     <button @click="fetchUserTimelineByHandle()">Find</button>
+    <div>{{timeline}}</div>
   </div>
 </template>
 
@@ -12,13 +13,13 @@ export default {
   data() {
     return {
       handle: '',
+      timeline: [],
     };
   },
   methods: {
     async fetchUserTimelineByHandle() {
-      console.log(this.handle, 'handle');
       const timeline = await API.getUserTimeline(this.handle);
-      console.log(timeline, 'timeline');
+      this.timeline = timeline;
     },
   },
 }
