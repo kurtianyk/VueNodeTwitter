@@ -2,7 +2,9 @@
   <div class="main-page">
     <input v-model="handle" />
     <button @click="fetchUserTimelineByHandle()">Find</button>
-    <div>{{timeline}}</div>
+    <ul v-if="timeline.length">
+      <li v-for="twitt in timeline" v-bind:key="twitt.id">{{ twitt}}</li>
+    </ul>
   </div>
 </template>
 
