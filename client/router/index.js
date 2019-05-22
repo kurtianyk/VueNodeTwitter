@@ -15,7 +15,7 @@ const router = new Router({
     },
     {
       path: '*',
-      component: NotFound,  
+      component: NotFound,
     },
   ],
 });

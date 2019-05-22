@@ -1,4 +1,3 @@
-const path = require('path');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 
@@ -18,7 +17,7 @@ module.exports = (env, argv) => {
   const serverHost = process.env.APP_HOST || 'localhost';
 
   return {
-    entry: ["@babel/polyfill", "./client/main.js"],
+    entry: ['@babel/polyfill', './client/main.js'],
     output: {
       filename: isProduction ? '[name].[chunkhash].js' : '[name].[hash].js',
       chunkFilename: isProduction ? 'vendor.[chunkhash].js' : 'vendor.[hash].js',
@@ -27,9 +26,9 @@ module.exports = (env, argv) => {
     resolve: {
       extensions: [ '.js', '.vue' ],
       alias: {
-          'vue$': isProduction ? 'vue/dist/vue.runtime.min.js' : 'vue/dist/vue.runtime.js',
-          '@': `${__dirname}/client`,
-      }
+        'vue$': isProduction ? 'vue/dist/vue.runtime.min.js' : 'vue/dist/vue.runtime.js',
+        '@': `${__dirname}/client`,
+      },
     },
     module: {
       rules: [
@@ -42,7 +41,7 @@ module.exports = (env, argv) => {
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
-          }
+          },
         },
         {
           test: /\.(scss|css)$/,
@@ -75,10 +74,15 @@ module.exports = (env, argv) => {
           test: /\.(png|woff|woff2|eot|ttf|svg)$/,
           loader: 'url-loader?limit=100000',
         },
-      ]
+      ],
     },
     devtool: 'source-map',
     watch: true,
+    node: {
+      fs: 'empty',
+      net: 'empty',
+      tls: 'empty',
+    },
     plugins: [
       new CleanWebpackPlugin(),
       new HtmlPlugin({ template: './client/index.html' }),
