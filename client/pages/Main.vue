@@ -1,7 +1,11 @@
 <template>
-  <div class="main-page">
-    <input v-model="handle" />
-    <button @click="fetchUserTimelineByHandle()">Find</button>
+  <div class="main-page-wrapper">
+    <h1>Twitter Timeline</h1>
+    <input-field
+      :value="handle"
+      @inputChange="handleChange"
+    />
+    <button-component @fetchUserTimeline="fetchUserTimelineByHandle">Search</button-component>
     <ul v-if="timeline.length">
       <li v-for="twitt in timeline" v-bind:key="twitt.id">{{ twitt}}</li>
     </ul>
@@ -10,8 +14,14 @@
 
 <script>
 import API from '@/services/api.js';
+import InputField from '@/components/InputField';
+import ButtonComponent from '@/components/ButtonComponent';
 
 export default {
+  components: {
+    InputField,
+    ButtonComponent
+  },
   data() {
     return {
       handle: '',
@@ -20,26 +30,13 @@ export default {
   },
   methods: {
     async fetchUserTimelineByHandle() {
+      console.log(this.handle, 'handle');
       const timeline = await API.getUserTimeline(this.handle);
       this.timeline = timeline;
+    },
+    handleChange(value) {
+      this.handle = value;
     },
   },
 }
 </script>
-
-<style lang="scss" scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

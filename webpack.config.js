@@ -26,7 +26,8 @@ module.exports = (env, argv) => {
     resolve: {
       extensions: [ '.js', '.vue' ],
       alias: {
-        'vue$': isProduction ? 'vue/dist/vue.runtime.min.js' : 'vue/dist/vue.runtime.js',
+        // 'vue$': isProduction ? 'vue/dist/vue.runtime.min.js' : 'vue/dist/vue.runtime.js',
+        'vue$': 'vue/dist/vue.esm.js',
         '@': `${__dirname}/client`,
       },
     },
@@ -85,7 +86,7 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new CleanWebpackPlugin(),
-      new HtmlPlugin({ template: './client/index.html' }),
+      new HtmlPlugin({ template: './client/index.html', favicon: './client/assets/twitter_favicon.svg' }),
       new VueLoaderPlugin(),
       new MiniCssExtractPlugin({
         filename: isProduction ? '[name].[hash].css' : '[name].css',
