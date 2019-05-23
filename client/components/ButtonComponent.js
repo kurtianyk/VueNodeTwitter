@@ -1,5 +1,10 @@
 import Vue from 'vue';
 
 export default Vue.component('ButtonComponent', {
-  template: `<button @click="(event) => this.$emit('fetchUserTimeline')"><slot /></button>`,
+  props: {
+    isDisabled: {
+      type: Boolean,
+    },
+  },
+  template: `<button class="button" :disabled="isDisabled"  @click="(event) => this.$emit('fetchUserTimeline')"><slot /></button>`,
 });

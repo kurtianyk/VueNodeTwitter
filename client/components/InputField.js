@@ -6,11 +6,19 @@ export default Vue.component('InputField', {
       type: String,
       required: true,
     },
+    placeholder: {
+      type: String,
+      default: '',
+    },
   },
   template: `
-    <input
-      :value="value"
-      @input="(event) => this.$emit('inputChange', event.target.value)"
-    />
+    <div class="input-wrapper">
+      <input
+        class="input-field"
+        :value="value"
+        :placeholder="placeholder"
+        @input="(event) => this.$emit('inputChange', event.target.value)"
+      />
+    </div>
   `,
 });
