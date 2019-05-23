@@ -1,0 +1,11 @@
+.not-found-page-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  .not-found-page-content {
+    color: #fff;
+    font-family: $font-family-main;
+    font-size: 150px;
+  }
+}
