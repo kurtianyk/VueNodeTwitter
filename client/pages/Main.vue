@@ -10,8 +10,12 @@
       />
       <button-component :isDisabled="!canSearchUser" @fetchUserTimeline="fetchUserTimelineByHandle">Search</button-component>
     </div>
-    <ul v-if="timeline.length">
-      <li v-for="twitt in timeline" v-bind:key="twitt.id">{{ twitt}}</li>
+    <ul class="tweets-timeline" v-if="timeline.length">
+      <tweet-item 
+        v-for="tweet in timeline"
+        :key="tweet.id"
+        :tweet="tweet"
+      />
     </ul>
   </div>
 </template>
@@ -22,11 +26,13 @@ import _ from 'lodash';
 import API from '@/services/api.js';
 import InputField from '@/components/InputField';
 import ButtonComponent from '@/components/ButtonComponent';
+import TweetItem from '@/components/TweetItem';
 
 export default {
   components: {
     InputField,
-    ButtonComponent
+    ButtonComponent,
+    TweetItem,
   },
   data() {
     return {

@@ -6,7 +6,7 @@
   padding: 15px;
   padding-bottom: 50px;
   .main-page-header {
-    font-family: 'Montserrat', sans-serif;
+    font-family: $font-family-secondary;
     font-size: 40px;
     font-weight: bold;
     color: #48AAE6;
@@ -18,10 +18,13 @@
     justify-content: center;
     margin-top: 20px;
     .at {
-      font-family: 'Montserrat', sans-serif;
+      font-family: $font-family-secondary;
       font-size: 30px;
       color: #48AAE6;
       text-align: center;
     }
+  }
+  .tweets-timeline {
+    margin-top: 50px;
   }
 }
