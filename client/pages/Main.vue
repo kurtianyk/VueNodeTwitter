@@ -6,6 +6,7 @@
       <input-field
         :value="handle"
         placeholder="username"
+        @keydown.enter="fetchUserTimelineByHandle"
         @inputChange="handleChange"
       />
       <button-component :isDisabled="!canSearchUser" @fetchUserTimeline="fetchUserTimelineByHandle">Search</button-component>
@@ -43,7 +44,7 @@ export default {
   },
   methods: {
     async fetchUserTimelineByHandle() {
-      console.log(this.handle, 'handle');
+      if(_.isEmpty(this.handle)) return;
       const timeline = await API.getUserTimeline(this.handle);
       this.timeline = timeline;
     },
