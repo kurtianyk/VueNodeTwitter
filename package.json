@@ -2,7 +2,7 @@
   "name": "vuenodetwitter",
   "version": "1.0.0",
   "description": "Twitter API with Vue.js and Node.js",
-  "main": "client/main.js",
+  "main": "server/app.js",
   "scripts": {
     "start": "NODE_ENV=production node ./server/app.js",
     "dev": "concurrently \"webpack-dev-server --mode development\" \"nodemon ./server/app.js\"",

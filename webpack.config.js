@@ -13,8 +13,8 @@ module.exports = (env, argv) => {
   dotenv.config();
 
   const isProduction = argv && argv.mode && argv.mode === 'production';
-  const serverPort = process.env.PORT_HTTP || 3001;
-  const serverHost = process.env.APP_HOST || 'localhost';
+  const APP_PORT = process.env.APP_PORT || 3001;
+  const APP_HOST = process.env.APP_HOST || 'localhost';
 
   return {
     entry: ['@babel/polyfill', './client/main.js'],
@@ -123,7 +123,7 @@ module.exports = (env, argv) => {
       open: true,
       hot: true,
       proxy: {
-        '/api': `http://${serverHost}:${serverPort}`,
+        '/api': `http://${APP_HOST}:${APP_PORT}`,
       },
       publicPath: '/',
       watchOptions: { aggregateTimeout: 300, poll: 1000 },
